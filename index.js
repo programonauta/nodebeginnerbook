@@ -1,13 +1,19 @@
 /*
-  Third version of simple HTTP server
+  4th version of simple HTTP server
   -----------------------------------
 
-  This file start the server, first calling a module named 'server'
-  and starting it.
+  Creating a route.
 
-  Notice that this file just call the method start.
+  "Making different HTTP requests point at different parts of our code"
+
+  There are two modules:
+    server: receive the main request, parse it and call router to deal the
+            request.
+    router: the file that directs the request
+
 */
 
 var server = require("./server");
+var router = require("./router");
 
-server.start();
+server.start(router.route);

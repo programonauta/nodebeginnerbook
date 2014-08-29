@@ -1,24 +1,17 @@
 /*
-	Third version of simple HTTP server
-	-----------------------------------
-	Now was created another file (index.js) to start the server.
-	This file was transformed in a module.
+
 */
 
 var http = require("http");
+var url = require("url");
 
-/*
-	The callback function is defined as a
-	parameter of createServer method.
-*/
-
-/* 	To run the server:
-	Please check index.js file
-*/
-
-function start() {
+function start(route) {
 	function onRequest(request, response) {
-		console.log("Request received.");
+		var pathname=url.parse(request.url).pathname; // get pathname
+		console.log("Request for "+pathname+" received.");
+
+		route(pathname);
+
 		response.writeHead(200, {"Content-Type": "text/plain"});
 		response.write("Hello World!");
 		response.end();
