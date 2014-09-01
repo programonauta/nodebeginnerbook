@@ -1,10 +1,8 @@
 /*
-  6th version of simple HTTP server
+  7th version of simple HTTP server
   -----------------------------------
 
-  Explain about blocking and non-blocking
-  
-  Create an array to help the handler
+   Now the version with upload file
 
 */
 
@@ -18,6 +16,7 @@ var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/show"] = requestHandlers.show;
 
-
+// Call the method to start server, passing route method as well the handle array
 server.start(router.route, handle);

@@ -1,7 +1,3 @@
-/*
-
-*/
-
 var http = require("http");
 var url = require("url");
 
@@ -25,31 +21,16 @@ function start(route, handle) {
 	// http://nodejs.org/api/http.html#http_event_request
 	function onRequest(request, response) {
 
-      // Initialize variable postData;
-      var postData = "";
-            
       //Parse the url to get the slug
 		var pathname=url.parse(request.url).pathname; // get pathname
 		console.log("Request for "+pathname+" received.");
-
-      // Set code of received data
-      request.setEncoding("utf8");
-      
-      // Define callback function when data arrives.
-      request.addListener("data", function(postDataChunk) {
-         postData += postDataChunk;
-         console.log("Received POST Data chunk '"+postDataChunk+ "'.");
-      });
-      
-      // Define callback function when all data arrives.
-      request.addListener("end", function() {   
-         // Call the router with parameters:
-         // handle: the array that link slug to method
-         // pathname: the slug
-         // response: object created by HTTP Server, see docs on
-         // http://nodejs.org/api/http.html#http_class_http_serverresponse
-         route(handle, pathname, response, postData);
-      });
+      // Call the router with parameters:
+      // handle: the array that link slug to method
+      // pathname: the slug
+      // response: object created by HTTP Server, see docs on
+      // request
+      // http://nodejs.org/api/http.html#http_class_http_serverresponse
+      route(handle, pathname, response, request);
    }
 
 	// Method to create a server and define the callback function

@@ -4,14 +4,14 @@
 
 */
 
-function route(handle, pathname, response, postData) {
+function route(handle, pathname, response, request) {
   console.log("About to route a request for "+pathname);
 
   //Test if the method defined on array handle is really a method.
   //If yes call it and send response object as a parameter
   //Otherwise return a 404 error 
   if (typeof handle[pathname] === 'function') {
-    handle[pathname](response, postData);
+    handle[pathname](response, request);
   }
   else {
     console.log("No request handler found for "+pathname);
